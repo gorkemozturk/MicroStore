@@ -17,7 +17,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Management\Data\" />
+    <Folder Include="Areas\Management\Models\" />
     <Folder Include="Models\ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Management\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Management\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

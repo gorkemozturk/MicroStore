@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<MicroStore.Models.Category>
+@{
+    ViewData["Title"] = "Index";
 }
 
 <!-- NAVIGATION -->
@@ -10,13 +11,7 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
+                <li><a asp-action="Index" asp-controller="Category">Categories</a></li>
             </ul>
             <!-- /NAV -->
         </div>
@@ -33,10 +28,10 @@
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
-                <h3 class="breadcrumb-header">Regular Page</h3>
+                <h3 class="breadcrumb-header">Categories</h3>
                 <ul class="breadcrumb-tree">
                     <li><a href="#">Home</a></li>
-                    <li class="active">Blank</li>
+                    <li class="active">Categories</li>
                 </ul>
             </div>
         </div>
@@ -52,7 +47,27 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Deneme</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Deneme</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info" role="alert">
+                    There is no any value to show here.
+                </div>
+            }
         </div>
         <!-- /row -->
     </div>

@@ -70,8 +70,9 @@ namespace MicroStore
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                  name: "areas",
+                  template: "{area=}/{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

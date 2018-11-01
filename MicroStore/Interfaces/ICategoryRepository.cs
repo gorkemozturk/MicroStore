@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MicroStore.Interfaces
 {
-    interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IRepository<Category>
     {
     }
 }
