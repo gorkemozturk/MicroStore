@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MicroStore.Interfaces;
 using MicroStore.Models;
+using MicroStore.Models.ViewModels;
 
 namespace MicroStore.Areas.Management.Controllers
 {
@@ -13,9 +14,18 @@ namespace MicroStore.Areas.Management.Controllers
     {
         private readonly ICategoryRepository _category;
 
+        [BindProperty]
+        public CategoryViewModel CategoryViewModel { get; set; }
+
         public CategoryController(ICategoryRepository category)
         {
             _category = category;
+
+            CategoryViewModel = new CategoryViewModel()
+            {
+                Categories = _category.List(),
+                Category = new Category()
+            };
         }
 
         public IActionResult Index()
@@ -26,7 +36,7 @@ namespace MicroStore.Areas.Management.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            return View(CategoryViewModel);
         }
 
         [HttpPost]
@@ -46,45 +56,52 @@ namespace MicroStore.Areas.Management.Controllers
         {
             if (id == null) return NotFound();
 
-            Category category = _category.Find(id);
-            if (category == null) return NotFound();
+            CategoryViewModel.Category = _category.Find(id);
+            if (CategoryViewModel == null) return NotFound();
 
-            return View(category);
+            return View(CategoryViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Update(int id, Category category)
         {
+            category = _category.Find(id);
+
             if (id != category.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
-                _category.Update(category);
+                category.Name = CategoryViewModel.Category.Name;
+                category.ParentId = CategoryViewModel.Category.ParentId;
+                category.DisplayOrder = CategoryViewModel.Category.DisplayOrder;
+
+                _category.Save();
+
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(category);
+            return View(CategoryViewModel);
         }
 
         public IActionResult Show(int? id)
         {
             if (id == null) return NotFound();
 
-            Category category = _category.Find(id);
-            if (category == null) return NotFound();
+            CategoryViewModel.Category = _category.Find(id);
+            if (CategoryViewModel == null) return NotFound();
 
-            return View(category);
+            return View(CategoryViewModel);
         }
 
         public IActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
 
-            Category category = _category.Find(id);
-            if (category == null) return NotFound();
+            CategoryViewModel.Category = _category.Find(id);
+            if (CategoryViewModel == null) return NotFound();
 
-            return View(category);
+            return View(CategoryViewModel);
         }
 
         [HttpPost]

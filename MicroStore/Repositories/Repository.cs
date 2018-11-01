@@ -49,5 +49,10 @@ namespace MicroStore.Repositories
             _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
     }
 }

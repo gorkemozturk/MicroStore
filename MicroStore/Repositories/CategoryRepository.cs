@@ -1,4 +1,5 @@
-﻿using MicroStore.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MicroStore.Data;
 using MicroStore.Interfaces;
 using MicroStore.Models;
 using System;

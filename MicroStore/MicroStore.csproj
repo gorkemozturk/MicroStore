@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20181101141333_UpdateCategoriesTableOnTheDatabase.cs" />
+    <Compile Remove="Data\Migrations\20181101141333_UpdateCategoriesTableOnTheDatabase.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181101142803_SecondUpdateCategoriesTable.cs" />
+    <Compile Remove="Data\Migrations\20181101142803_SecondUpdateCategoriesTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\site.min.js" />
   </ItemGroup>
@@ -19,7 +26,6 @@
   <ItemGroup>
     <Folder Include="Areas\Management\Data\" />
     <Folder Include="Areas\Management\Models\" />
-    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

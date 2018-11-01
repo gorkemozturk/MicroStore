@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181031153506_CreateCategoriesTableToDatabase")]
-    partial class CreateCategoriesTableToDatabase
+    [Migration("20181101150417_UpdateCategoriesTable")]
+    partial class UpdateCategoriesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,7 +197,11 @@ namespace MicroStore.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<int?>("ParentId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories");
                 });
@@ -245,6 +249,13 @@ namespace MicroStore.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MicroStore.Models.Category", b =>
+                {
+                    b.HasOne("MicroStore.Models.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
                 });
 #pragma warning restore 612, 618
         }

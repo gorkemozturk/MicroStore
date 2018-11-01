@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MicroStore.Data.Migrations
 {
-    public partial class CreateCategoriesTableToDatabase : Migration
+    public partial class CreateCategoriesTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
