@@ -9,6 +9,7 @@ namespace MicroStore.Models
     public class Category
     {
         [Required]
+        [Display(Name = "ID")]
         public int Id { get; set; }
 
         [Required]
@@ -16,6 +17,7 @@ namespace MicroStore.Models
         public string Name { get; set; }
 
         [Required]
+        [Range(0, int.MaxValue)]
         [Display(Name="Display Order")]
         public int DisplayOrder { get; set; }
     }

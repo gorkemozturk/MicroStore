@@ -1,0 +1,77 @@
+﻿@model MicroStore.Models.Category
+@{
+    ViewData["Title"] = "Update";
+}
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a asp-action="Index" asp-controller="Category">Categories</a></li>
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="breadcrumb-header">Categories</h3>
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li class="active"><a asp-action="Index">Categories</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-6 order-details">
+                <form method="post" asp-action="Update">
+                    <div class="section-title">
+                        <h3 class="title">Update The Category</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Name"></label>
+                        <input class="input" type="text" asp-for="Name" autocomplete="off">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="DisplayOrder"></label>
+                        <input class="input" type="text" asp-for="DisplayOrder" autocomplete="off">
+                        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                    </div>
+                    <a asp-action="Index" style="background: #8D99AE" class="primary-btn"><i class="fa fa-angle-left"></i> Back to List</a>
+                    <button asp-route-id="@Model.Id" type="submit" class="primary-btn"><i class="fa fa-edit"></i> Update</button>
+                </form>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+@section Scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
